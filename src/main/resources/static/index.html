@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tets_v0.1</title>
+  <script src="https://cdn.tailwindcss.com"></script>  <!-- Решил использовать пока что эту хуйню -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body class="bg-gray-400 min-h-screen">
+
+  <!-- хедер -->
+  <div class="w-full flex justify-between items-start px-6 py-4 fixed top-0 left-0 z-10 bg-white shadow">
+    <img src="./images/logo.png" alt="Ваш логотип" class="logo">
+    <div class="text-xl font-bold">GrowDrip</div>
+    <div class="space-x-4">
+      <button id="log-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Войти</button>
+    </div>
+  </div>
+
+  <!-- строка -->
+<div id="search-container" class="search-centered z-20 w-full flex justify-center px-4">
+  <div class="relative w-full max-w-xl">
+    <input id="search-input" type="text" placeholder="Введите запрос..." class="w-full px-6 py-3 pr-10 rounded-full border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-blue-400 block appearance-none">
+    
+    <!-- крест внутри поля -->
+    <button id="clear-search" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black invisible focus:visible outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+  <!-- резы -->
+  <div id="results" class="pt-[160px] px-6 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Тут типо карты появлятся будут -->
+  </div>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>

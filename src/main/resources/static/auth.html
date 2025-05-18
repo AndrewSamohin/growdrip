@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спизжено и переделано</title>
+    <link rel="stylesheet" href="./css/auth.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box login">
+            <form action="#">
+                <h1>Авторизация</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Логин" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Пароль" required>
+                    <i class='bx bxs-lock-alt' ></i>
+                </div>
+                <button type="submit" class="btn">Войти</button>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <form action="#">
+                <h1>Регистрация</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Логин" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Электронная почта" required>
+                    <i class='bx bxs-envelope' ></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Пароль" required>
+                    <i class='bx bxs-lock-alt' ></i>
+                </div>
+                <button type="submit" class="btn">Создать</button>
+            </form>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Добро пожаловать!</h1>
+                <p>Нет аккаунта?</p>
+                <button class="btn register-btn">Создать новый</button>
+            </div>
+
+            <div class="toggle-panel toggle-right">
+                <h1>С возвращением!</h1>
+                <p>Уже есть аккаунт?</p>
+                <button class="btn login-btn">Войти</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/auth.js"></script>
+</body>
+</html>
