@@ -38,7 +38,6 @@ clearButton.addEventListener('click', function() {
   }
 });
 
-
 input.addEventListener('input', () => {
   clearButton.classList.toggle('invisible', !input.value); 
 });
@@ -59,11 +58,11 @@ input.addEventListener('keydown', async (e) => {
 
     try {
       if (allResultsCache.length === 0) {
-  const response = await fetch('./data/data.json');
-  allResultsCache = await response.json();
-}
-const allResults = allResultsCache;
-
+        const response = await fetch('./data/data.json');
+        allResultsCache = await response.json();
+      }
+  
+      const allResults = allResultsCache;
 
       // Фильтр небольшой
       const filtered = allResults.filter(item =>
@@ -76,72 +75,60 @@ const allResults = allResultsCache;
         return;
       }
 
-    //Карточки
-fetch('') // адрес
-  .then(response => response.json())
-  .then(data => {
-    filtered = data; // Подруб к API
-    
-    filtered.forEach((item, index) => {
-      const card = document.createElement('div');
-      card.className = 'card-flip card-appear';
-      card.style.animationDelay = `${index * 100}ms`;
-      
-      card.innerHTML = `
-      <div class="card-inner">
-        <div class="card-front p-6">
-          <img src="${item.image}" alt="${item.title}" class="w-full aspect-square object-cover rounded-md mb-4">
-          <h3 class="text-xl font-semibold mb-2">${item.title}</h3>
-          <p class="text-gray-500">${item.subtitle || 'Описание...'}</p>
+      // Карточки
+      filtered.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'card-flip card-appear';
+        card.style.animationDelay = `${index * 100}ms`;
+        
+        card.innerHTML = `
+        <div class="card-inner">
+          <div class="card-front p-6">
+            <img src="${item.image}" alt="${item.title}" class="w-full aspect-square object-cover rounded-md mb-4">
+            <h3 class="text-xl font-semibold mb-2">${item.title}</h3>
+            <p class="text-gray-500">${item.subtitle || 'Описание...'}</p>
+          </div>
+          <div class="card-back">
+            <h4 class="text-lg font-bold mb-1">Подробнее</h4>
+            <p>${item.description || 'Здесь может быть больше информации.'}</p>
+          </div>
         </div>
-        <div class="card-back">
-          <h4 class="text-lg font-bold mb-1">Подробнее</h4>
-          <p>${item.description || 'Здесь может быть больше информации.'}</p>
-        </div>
-      </div>
-      `;
-      
-      document.body.appendChild(card); // Добавьте элемент на нужную позицию страницы
-    });
-  })
-  .catch(error => console.error('Ошибка:', error));
+        `;
 
-  // по клику — флип (либо не работает либо я хз)
-  card.addEventListener('click', () => {
-  // Создаем оверлей (работает)
-  const overlay = document.createElement('div');
-  overlay.className = 'modal-overlay';
+        // По клику — показываем дополнительную инфу
+        card.addEventListener('click', () => {
+          // Создаем оверлей
+          const overlay = document.createElement('div');
+          overlay.className = 'modal-overlay';
 
-  // Создаем карточку для модального окна
-  const modal = document.createElement('div');
-  modal.className = 'modal-card bg-white rounded-lg shadow-lg p-6';
+          // Создаем карточку для модального окна
+          const modal = document.createElement('div');
+          modal.className = 'modal-card bg-white rounded-lg shadow-lg p-6';
 
-  // Заполнялка
-  modal.innerHTML = `
-    <h2 class="text-2xl font-bold mb-4">${item.title}</h2>
-    <p class="text-gray-700 mb-4">${item.description}</p>
-    <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Закрыть</button>
-  `;
+          // Заполняем модальное окно информацией
+          modal.innerHTML = `
+            <h2 class="text-2xl font-bold mb-4">${item.title}</h2>
+            <p class="text-gray-700 mb-4">${item.description}</p>
+            <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Закрыть</button>
+          `;
 
-  const closeBtn = modal.querySelector('button');
-  closeBtn.addEventListener('click', () => {
-    document.body.removeChild(overlay);
-  });
+          const closeBtn = modal.querySelector('button');
+          closeBtn.addEventListener('click', () => {
+            document.body.removeChild(overlay);
+          });
 
-  overlay.addEventListener('click', (e) => {
-    if (!modal.contains(e.target)) {
-      document.body.removeChild(overlay);
-    }
-  });
+          overlay.addEventListener('click', (event) => {
+            if (!modal.contains(event.target)) {
+              document.body.removeChild(overlay);
+            }
+          });
 
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-});
+          overlay.appendChild(modal);
+          document.body.appendChild(overlay);
+        });
 
-
-  resultsContainer.appendChild(card);
-});
-
+        resultsContainer.appendChild(card);
+      });
     } catch (err) {
       resultsContainer.innerHTML = `<p class="text-red-500">Ошибка загрузки данных</p>`;
     }
@@ -157,5 +144,3 @@ input.addEventListener('input', () => {
     resultsContainer.innerHTML = '';
   }
 });
-
-
