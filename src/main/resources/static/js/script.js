@@ -76,26 +76,35 @@ const allResults = allResultsCache;
         return;
       }
 
-      // анимка на карточки с имитацией типо загружается
-      filtered.forEach((item, index) => {
-  const card = document.createElement('div');
-  card.className = 'card-flip card-appear';
-  card.style.animationDelay = `${index * 100}ms`;
-
-  card.innerHTML = `
-  <div class="card-inner">
-    <div class="card-front p-6">
-      <img src="${item.image}" alt="${item.title}" class="w-full aspect-square object-cover rounded-md mb-4">
-      <h3 class="text-xl font-semibold mb-2">${item.title}</h3>
-      <p class="text-gray-500">${item.subtitle || 'Описание...'}</p>
-    </div>
-    <div class="card-back">
-      <h4 class="text-lg font-bold mb-1">Подробнее</h4>
-      <p>${item.description || 'Здесь может быть больше информации.'}</p>
-    </div>
-  </div>
-`;
-
+    //Карточки
+fetch('') // адрес
+  .then(response => response.json())
+  .then(data => {
+    filtered = data; // Подруб к API
+    
+    filtered.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = 'card-flip card-appear';
+      card.style.animationDelay = `${index * 100}ms`;
+      
+      card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front p-6">
+          <img src="${item.image}" alt="${item.title}" class="w-full aspect-square object-cover rounded-md mb-4">
+          <h3 class="text-xl font-semibold mb-2">${item.title}</h3>
+          <p class="text-gray-500">${item.subtitle || 'Описание...'}</p>
+        </div>
+        <div class="card-back">
+          <h4 class="text-lg font-bold mb-1">Подробнее</h4>
+          <p>${item.description || 'Здесь может быть больше информации.'}</p>
+        </div>
+      </div>
+      `;
+      
+      document.body.appendChild(card); // Добавьте элемент на нужную позицию страницы
+    });
+  })
+  .catch(error => console.error('Ошибка:', error));
 
   // по клику — флип (либо не работает либо я хз)
   card.addEventListener('click', () => {
