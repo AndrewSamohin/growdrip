@@ -58,7 +58,7 @@ input.addEventListener('keydown', async (e) => {
 
     try {
       if (allResultsCache.length === 0) {
-        const response = await fetch('./data/data.json');
+        const response = await fetch(`/search?q=${encodeURIComponent(query)}`); // поиск, подруб к бэку (изменить полностью нужно)
         allResultsCache = await response.json();
       }
   
