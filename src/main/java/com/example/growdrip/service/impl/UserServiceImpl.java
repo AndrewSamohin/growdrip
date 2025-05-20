@@ -1,5 +1,6 @@
 package com.example.growdrip.service.impl;
 
+import com.example.growdrip.dto.LoginRequest;
 import com.example.growdrip.dto.UserDto;
 import com.example.growdrip.entity.User;
 import com.example.growdrip.mapper.UserMapper;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -19,7 +21,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
-
 
     //Регистрация нового пользователя
     @Override
@@ -40,16 +41,30 @@ public class UserServiceImpl implements UserService {
         User saved = userRepository.save(user);
         return userMapper.toDto(saved);
     }
+
+    //Вход пользователя и поиск его по логину
+    @Override
+    public boolean authenticateUser(LoginRequest loginRequest) {
+        Optional<User> userOptional = userRepository.findByUsername(loginRequest.getUsername());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
+        }
+        return false;
+    }
+
     //Проверяет, существует ли пользователь с данным email
     @Override
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
+
     //Проверяет, существует ли пользователь с данным username
     @Override
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
+
     //Находит пользователя по имени и возвращает его DTO
     @Override
     public UserDto findByUsername(String username) {

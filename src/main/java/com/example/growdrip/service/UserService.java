@@ -1,10 +1,7 @@
 package com.example.growdrip.service;
 
-import com.example.growdrip.dto.RegisterRequest;
+import com.example.growdrip.dto.LoginRequest;
 import com.example.growdrip.dto.UserDto;
-import com.example.growdrip.entity.User;
-
-import java.util.Optional;
 
 public interface UserService {
 
@@ -19,5 +16,8 @@ public interface UserService {
 
     //Загружает пользователя по username
     UserDto findByUsername(String username);
+
+    //Для входа в аккаунт
+    boolean authenticateUser(LoginRequest loginRequest);
 
 }
