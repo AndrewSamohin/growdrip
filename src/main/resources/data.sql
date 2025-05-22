@@ -1,5 +1,5 @@
 -- Вставка пользователей
-INSERT INTO users (id, username, email, password_hash)
+INSERT INTO users (id, username, email, password)
 VALUES (1, 'plantlover', 'plantlover@example.com', 'hashedpassword123'),
        (2, 'greenthumb', 'greenthumb@example.com', 'securehash456');
 
