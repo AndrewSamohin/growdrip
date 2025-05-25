@@ -1,7 +1,7 @@
 const plants = Array.from({ length: 15 }, (_, i) => ({
   name: `Растение ${i + 1}`,
   description: "Тут будет какое-то описание этого растения",
-  image: "https://img.freepik.com/premium-photo/close-up-wet-red-rose_1048944-20448024.jpg?semt=ais_hybrid&w=740"
+  image: "https://lifeglobe.net/x/entry/0/8_5.jpg"
 }));
 
 const searchInput = document.getElementById('searchInput');
