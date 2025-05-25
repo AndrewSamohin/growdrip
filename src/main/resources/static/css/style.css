@@ -1,118 +1,187 @@
+html, body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url('https://images.wallpaperscraft.ru/image/single/rasteniia_listva_razmytost_114056_1920x1080.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f1f5f9;
+}
+body.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
+header {
+  height: 96px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background-color: rgba(15, 23, 42, 0.6); /* Более тёмный и прозрачный */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Мягкая граница */
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: 1.5rem;
+  z-index: 50;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); /* Тень снизу */
+}
 
-.search-centered {
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#searchContainer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 0.6s ease;
+  display: flex;
+  gap: 1rem;
+  width: 90vw;
+  max-width: 900px;
+  z-index: 99;
+  transition: all 0.5s ease;
 }
 
-.search-fixed-top {
+#searchContainer.header-state {
   position: fixed;
-  top: 90px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  transition: all 0.9s ease;
+  width: 60vw;
+  max-width: 500px;
 }
 
-.card-appear {
+#searchInput {
+  background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Эффект стекла */
+  -webkit-backdrop-filter: blur(10px); /* Поддержка Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Светлая рамка */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);  /* Нежная тень */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 1rem center;
+  background-size: 1.25rem 1.25rem; /* размер иконки */
+  padding-left: 3rem; /* чтобы текст не налезал на иконку */
+}
+
+#resultsContainer {
+  display: none;
+  max-width: 1100px;
+  margin: 120px auto 2rem auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  overflow-y: auto;
+}
+
+#resultsContainer.visible {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  align-content: start;
+}
+
+@media (min-width: 768px) {
+  #resultsContainer.visible {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.plant-card {
+  background-color: #334155;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.4);
+  cursor: pointer;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.9s ease forwards;
+  overflow: hidden;
+  padding: 0.9rem; /* Внутренний отступ для отступа между краем карточки и изображением */
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem; /* Отступ между изображением и текстом */
+  transform: translateY(20px) scale(1);
+  transition: transform 0.2s ease, box-shadow 0.5s ease;
+}
+
+.plant-card.visible {
+  animation: fadeInUp 0.5s ease forwards;
 }
 
 @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(0) scale(0.9);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.card-flip {
-  perspective: 1000px;
+.plant-card:hover {
+  transform: translateY(0) scale(1.1);
+  box-shadow: 0 2px 24px rgba(255, 255, 255, 0.3); /*эффект при наведении на карточку*/
+  transition: transform 0.2s ease, box-shadow 0.5s ease;
+}
+
+.plant-card img {
   width: 100%;
-  height: 430px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 0.75rem; /* Закругление изображения, меньше чем у карточки */
+  display: block;
+}
+
+.plant-info {
+  padding: 0 0.5rem; /* Немного внутреннего отступа для текста */
+  text-align: center;
+}
+
+.plant-info h2 {
+  font-size: 1.375rem;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+#authButtons {
+  display: flex;
+  align-items: center;
+}
+
+.auth-btn {
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #a5b4fc; /* светло-голубой */
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(165, 180, 252, 0.7);
+  border-radius: 0.75rem;
   cursor: pointer;
-  position: relative;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.card-front {
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: 0.5s ease;
-  position: absolute;
-  width: 100%;
-  height: 430px;
-  backface-visibility: hidden;
-  border-radius: 1rem;
-  overflow: hidden;
+.auth-btn:hover {
+  background-color: rgba(165, 180, 252, 0.3);
+  color: #e0e7ff;
+  border-color: rgba(165, 180, 252, 1);
 }
 
-.card-front:hover {
-  transform: scale(1.03);
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+#plantModal {
+  transition: background-color 0.6s ease;
 }
 
-/* блюр */ 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.3s ease;
-}
-/* Приближение карты */ 
-.modal-card {
-  transform: scale(0.8);
-  width: 80%;
-  max-width: 700px;
-  height: auto;
-  transition: transform 0.7s ease;
-  animation: scaleUp 0.7s ease forwards;
-  z-index: 1000;
+#modalContent {
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-@keyframes scaleUp {
-  to {
-    transform: scale(1.1);
-  }
+#plantModal.show #modalContent {
+  transform: scale(1.1);
+  opacity: 1;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.fadeOut {
-    animation: fadeOutEffect 0.5s forwards;
-}
-
-@keyframes fadeOutEffect {
-    from { opacity: 1; transform: translateY(0); }
-    to   { opacity: 0; transform: translateY(-50px); }
-}
-
-.logo {
-  position: relative;
-  left: 10px; /* Расстояние от левого края */ 
-  width: 50px; /* Ширина логотипа */
-  height: auto; /* Высота пропорциональная ширине */
-  margin-right: 10px; 
-}
-
-

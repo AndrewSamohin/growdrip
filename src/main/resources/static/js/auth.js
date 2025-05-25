@@ -15,3 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("fadeIn");
     }
 });
+
+window.addEventListener('load', () => {
+  document.body.style.opacity = '1';
+});

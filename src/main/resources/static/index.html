@@ -1,41 +1,66 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <title>Tets_v0.1</title>
-  <script src="https://cdn.tailwindcss.com"></script>  <!-- Решил использовать пока что эту хуйню -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GrowDrip — Поиск растений</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
-<body class="bg-gray-400 min-h-screen">
+<body class="font-sans">
 
-  <!-- хедер -->
-  <div class="w-full flex justify-between items-start px-6 py-4 fixed top-0 left-0 z-10 bg-white shadow">
-    <img src="./images/logo.png" alt="Ваш логотип" class="logo">
-    <div class="text-xl font-bold">GrowDrip</div>
-    <div class="space-x-4">
-      <button id="log-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Войти</button>
-    </div>
+<header>
+  <div id="logo">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3" />
+    </svg>
+    <span class="text-2xl font-bold text-green-400">GrowDrip</span>
   </div>
 
-  <!-- строка -->
-<div id="search-container" class="search-centered z-20 w-full flex justify-center px-4">
-  <div class="relative w-full max-w-xl">
-    <input id="search-input" type="text" placeholder="Введите запрос..." class="w-full px-6 py-3 pr-10 rounded-full border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-blue-400 block appearance-none">
+  <div id="authButtons" class="ml-auto flex">
+    <a href="auth.html" class="auth-btn">Вход</a>
+  </div>
+</header>
+
+<div id="searchContainer">
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Введите название растения..."
+    class="flex-grow rounded-xl border border-gray-600 bg-slate-800 px-5 py-3 text-lg text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+    autocomplete="off"
+  />
+  <div class="underline"></div>
+</div>
+
+<section id="resultsContainer"></section>
+<div id="plantModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-colors duration-300">
+  <div
+    id="modalContent"
+    class="relative bg-slate-800 text-slate-100 rounded-2xl shadow-2xl w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-4 p-4 sm:p-6 transform scale-90 opacity-0 transition-all duration-300 ease-out max-h-[90vh] overflow-y-auto"
+  >
+    <button id="modalClose" class="absolute top-3 right-3 text-slate-400 hover:text-white text-3xl">&times;</button>
     
-    <!-- крест внутри поля -->
-    <button id="clear-search" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black invisible focus:visible outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+    <img
+      id="modalImage"
+      src=""
+      alt=""
+      class="rounded-xl w-full h-60 sm:h-72 md:h-[550px] object-cover mb-4"
+    />
+    
+    <h2
+      id="modalTitle"
+      class="text-xl sm:text-2xl font-semibold mb-2 text-center sm:text-left"
+    ></h2>
+    
+    <p
+      id="modalDescription"
+      class="text-sm sm:text-base text-slate-300 whitespace-pre-line"
+    ></p>
   </div>
 </div>
 
-  <!-- резы -->
-  <div id="results" class="pt-[160px] px-6 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <!-- Тут типо карты появлятся будут -->
-  </div>
-
-  <script src="./js/script.js"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>
