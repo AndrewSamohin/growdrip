@@ -6,6 +6,7 @@ import lombok.Data;
 public class RegisterRequest {
     //Входные данные при регистрации (от клиента к серверу)
     private String username;
+    private String email;
     private String password;
 
 }
