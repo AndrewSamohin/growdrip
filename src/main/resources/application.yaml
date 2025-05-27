@@ -22,6 +22,11 @@ spring:
     resources:
       static-locations: classpath:/static/
 
+jwt:
+  secret: G:Zw5[x4,nX/k~3%A9h@-]?T(=*j2N}q
+  access-token-validity: 900000 # 15 минут
+  refresh-token-validity: 604800000 # 7 дней
+
 server:
   port: 5500
 
