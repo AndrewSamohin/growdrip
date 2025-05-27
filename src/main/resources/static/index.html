@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,57 +9,43 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
+
 <body class="font-sans">
 
-<header>
-  <div id="logo">
-    <img src="./images/logo.png" alt="GrowDrip Logo" class="w-12 h-12 object-contain" />
-    <span class="text-2xl font-bold text-green-400">GrowDrip</span>
+  <header>
+    <div id="logo">
+      <img src="./images/logo.png" alt="GrowDrip Logo" class="w-12 h-12 object-contain" />
+      <span class="text-2xl font-bold text-green-400">GrowDrip</span>
+    </div>
+
+    <div id="authButtons" class="ml-auto flex">
+      <a href="auth.html" class="auth-btn">Вход</a>
+    </div>
+  </header>
+
+  <div id="searchContainer">
+    <input id="searchInput" type="search" placeholder="Введите название растения..."
+      class="flex-grow rounded-xl border border-gray-600 bg-slate-800 px-5 py-3 text-lg text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+      autocomplete="off" />
+    <div class="underline"></div>
   </div>
 
-  <div id="authButtons" class="ml-auto flex">
-    <a href="auth.html" class="auth-btn">Вход</a>
+  <section id="resultsContainer"></section>
+  <div id="plantModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-colors duration-300">
+    <div id="modalContent"
+      class="relative bg-slate-800 text-slate-100 rounded-2xl shadow-2xl w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-4 p-4 sm:p-6 transform scale-90 opacity-0 transition-all duration-300 ease-out max-h-[90vh] overflow-y-auto">
+      <button id="modalClose" class="absolute top-3 right-3 text-slate-400 hover:text-white text-3xl">&times;</button>
+
+      <img id="modalImage" src="" alt="" class="rounded-xl w-full h-60 sm:h-72 md:h-[550px] object-cover mb-4" />
+
+      <h2 id="modalTitle" class="text-xl sm:text-2xl font-semibold mb-2 text-center sm:text-left"></h2>
+
+      <p id="modalDescription" class="text-sm sm:text-base text-slate-300 whitespace-pre-line"></p>
+    </div>
   </div>
-</header>
 
-<div id="searchContainer">
-  <input
-    id="searchInput"
-    type="search"
-    placeholder="Введите название растения..."
-    class="flex-grow rounded-xl border border-gray-600 bg-slate-800 px-5 py-3 text-lg text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
-    autocomplete="off"
-  />
-  <div class="underline"></div>
-</div>
-
-<section id="resultsContainer"></section>
-<div id="plantModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-colors duration-300">
-  <div
-    id="modalContent"
-    class="relative bg-slate-800 text-slate-100 rounded-2xl shadow-2xl w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-4 p-4 sm:p-6 transform scale-90 opacity-0 transition-all duration-300 ease-out max-h-[90vh] overflow-y-auto"
-  >
-    <button id="modalClose" class="absolute top-3 right-3 text-slate-400 hover:text-white text-3xl">&times;</button>
-    
-    <img
-      id="modalImage"
-      src=""
-      alt=""
-      class="rounded-xl w-full h-60 sm:h-72 md:h-[550px] object-cover mb-4"
-    />
-    
-    <h2
-      id="modalTitle"
-      class="text-xl sm:text-2xl font-semibold mb-2 text-center sm:text-left"
-    ></h2>
-    
-    <p
-      id="modalDescription"
-      class="text-sm sm:text-base text-slate-300 whitespace-pre-line"
-    ></p>
-  </div>
-</div>
-
-<script src="./js/script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
+
 </html>

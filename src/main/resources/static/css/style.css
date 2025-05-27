@@ -1,11 +1,13 @@
-html, body {
+html,
+body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-              url('https://images.wallpaperscraft.ru/image/single/rasteniia_listva_razmytost_114056_1920x1080.jpg') no-repeat center center fixed;
+    url('https://images.wallpaperscraft.ru/image/single/rasteniia_listva_razmytost_114056_1920x1080.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #f1f5f9;
 }
+
 body.fade-out {
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -14,17 +16,23 @@ body.fade-out {
 header {
   height: 96px;
   position: fixed;
-  top: 0; left: 0; right: 0;
-  background-color: rgba(15, 23, 42, 0.6); /* Более тёмный и прозрачный */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  /* Более тёмный и прозрачный */
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Safari */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Мягкая граница */
+  -webkit-backdrop-filter: blur(12px);
+  /* Safari */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Мягкая граница */
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
   gap: 1.5rem;
   z-index: 50;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); /* Тень снизу */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  /* Тень снизу */
 }
 
 #logo {
@@ -56,16 +64,24 @@ header {
 }
 
 #searchInput {
-  background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
-  backdrop-filter: blur(10px); /* Эффект стекла */
-  -webkit-backdrop-filter: blur(10px); /* Поддержка Safari */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Светлая рамка */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);  /* Нежная тень */
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Полупрозрачный фон */
+  backdrop-filter: blur(10px);
+  /* Эффект стекла */
+  -webkit-backdrop-filter: blur(10px);
+  /* Поддержка Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Светлая рамка */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* Нежная тень */
   background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="gray" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
   background-repeat: no-repeat;
   background-position: 1rem center;
-  background-size: 1.25rem 1.25rem; /* размер иконки */
-  padding-left: 3rem; /* чтобы текст не налезал на иконку */
+  background-size: 1.25rem 1.25rem;
+  /* размер иконки */
+  padding-left: 3rem;
+  /* чтобы текст не налезал на иконку */
+  font-size: 15px;
 }
 
 #resultsContainer {
@@ -97,10 +113,12 @@ header {
   cursor: pointer;
   opacity: 0;
   overflow: hidden;
-  padding: 0.9rem; /* Внутренний отступ для отступа между краем карточки и изображением */
+  padding: 0.9rem;
+  /* Внутренний отступ для отступа между краем карточки и изображением */
   display: flex;
   flex-direction: column;
-  gap: 0.9rem; /* Отступ между изображением и текстом */
+  gap: 0.9rem;
+  /* Отступ между изображением и текстом */
   transform: translateY(20px) scale(1);
   transition: transform 0.2s ease, box-shadow 0.5s ease;
 }
@@ -114,6 +132,7 @@ header {
     opacity: 0;
     transform: translateY(0) scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -122,7 +141,8 @@ header {
 
 .plant-card:hover {
   transform: translateY(0) scale(1.1);
-  box-shadow: 0 2px 24px rgba(255, 255, 255, 0.3); /*эффект при наведении на карточку*/
+  box-shadow: 0 2px 24px rgba(255, 255, 255, 0.3);
+  /*эффект при наведении на карточку*/
   transition: transform 0.2s ease, box-shadow 0.5s ease;
 }
 
@@ -130,12 +150,14 @@ header {
   width: 100%;
   height: 320px;
   object-fit: cover;
-  border-radius: 0.75rem; /* Закругление изображения, меньше чем у карточки */
+  border-radius: 0.75rem;
+  /* Закругление изображения, меньше чем у карточки */
   display: block;
 }
 
 .plant-info {
-  padding: 0 0.5rem; /* Немного внутреннего отступа для текста */
+  padding: 0 0.5rem;
+  /* Немного внутреннего отступа для текста */
   text-align: center;
 }
 
@@ -156,7 +178,8 @@ header {
   padding: 0.5rem 1.2rem;
   font-weight: 600;
   font-size: 1rem;
-  color: #a5b4fc; /* светло-голубой */
+  color: #a5b4fc;
+  /* светло-голубой */
   background-color: rgba(255, 255, 255, 0.1);
   border: 1.5px solid rgba(165, 180, 252, 0.7);
   border-radius: 0.75rem;
