@@ -6,12 +6,14 @@ import com.example.growdrip.dto.UserDto;
 import com.example.growdrip.service.AuthService;
 import com.example.growdrip.service.UserService;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 @Data
+@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
