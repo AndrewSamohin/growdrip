@@ -20,7 +20,6 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
     //Аутентификация и генерация токена
     public JwtResponse authenticate(LoginRequest request) {

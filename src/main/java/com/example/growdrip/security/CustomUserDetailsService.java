@@ -23,4 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
         return new CustomUserDetails(user); // оборачиваем в адаптер
     }
+
+     //Возвращает сущность User по имени пользователя
+     //Нужен для получения User (entity) вместо UserDetails
+    public User loadUserEntityByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
 }

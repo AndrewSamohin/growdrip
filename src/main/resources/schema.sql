@@ -9,8 +9,8 @@ CREATE TABLE users
 
 CREATE TABLE plants
 (
-    id             SERIAL PRIMARY KEY,
-    user_id        INTEGER REFERENCES users (id) ON DELETE CASCADE,
+    id             BIGINT PRIMARY KEY,
+    user_id        BIGINT REFERENCES users (id) ON DELETE CASCADE,
     name           VARCHAR(100) NOT NULL,
     description    TEXT,
     species        VARCHAR(100),
