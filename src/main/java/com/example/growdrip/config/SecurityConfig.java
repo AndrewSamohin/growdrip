@@ -45,6 +45,8 @@ public class SecurityConfig {
                                 "/js/**",
                                 "/images/**")
                         .permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS).permitAll() //Все HTTP OPTIONS-запросы разрешаем
                         .anyRequest().authenticated()                // Остальные требуют авторизации
                 )
